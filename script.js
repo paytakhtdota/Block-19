@@ -23,37 +23,34 @@ function generateFreelancer() {
 //َA function to add a new freelancer to the freelancers array
 function addFreelancer() {
     freelancers.push(generateFreelancer());
-
     // Repalce the new freelancer to the recentFreelancer array
     recentFreelancer[0] = generateFreelancer();
 }
 
-setInterval(addFreelancer, 1500);
-
+//A function to calculate the average starting price of all freelancers
 function averagePrice() {
     const resultAverage = freelancers.reduce((acc, curr) => acc + curr.startingPrice, 0) / freelancers.length;
     return resultAverage;
 }
 
+// Start a set interval that will call the addFreelancer function every 1500 milliseconds
+const setIdAddFreelancer = setInterval(addFreelancer, 1500);
+
+// Get a reference and Set the body element's style
 const body = document.body;
 body.style = "display:flex; justify-content:center;";
-
+// Create a new div element to contain the freelancer forum
 const mainDiv = document.createElement("div");
 mainDiv.id = "mainDiv";
 mainDiv.className = "mainDiv";
 mainDiv.style = "border : solid black 2px;width : 500px; height: 250;margin-top:10%";
-
-// Add the grid style
 mainDiv.style.display = "flex";
 mainDiv.style.flexDirection = "column";
 mainDiv.style.alignItems = "center";
 mainDiv.style.justifyItems = "center";
 
-console.log(mainDiv);
-body.appendChild(mainDiv);
-
+body.appendChild(mainDiv);// Add the mainDiv element to the body element and more elements
 mainDiv.appendChild(document.createElement("h1")).innerHTML = "Freelancer Forum";
-let avePrace = setInterval(averagePrice(), 500);
 mainDiv.appendChild(document.createElement("h3")).innerHTML = `The average starting price is $${average}`;
 mainDiv.appendChild(document.createElement("h2")).innerHTML = "Available Freelancers";
 
@@ -133,4 +130,12 @@ setTimeout(() => {
 
 setTimeout(() => {
     clearInterval(intervalIdForfreelancerLog);
+}, 15000);
+
+setTimeout(() => {
+    clearInterval(setIdAddFreelancer);
+}, 15000);
+
+setTimeout(() => {
+    clearInterval(setIdAddFreelancer);
 }, 15000);
